@@ -88,7 +88,3 @@ Completado y funcional. Abierto a mejoras.
 * Agregar interfaz gráfica.
 * Guardar historial de conversiones.
 * Soporte para más monedas.
-
-## 👨‍💻 Autor
-
-Proyecto desarrollado como parte del **Challenge ONE - Java Backend**.
