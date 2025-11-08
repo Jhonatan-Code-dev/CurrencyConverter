@@ -8,23 +8,24 @@ import java.net.http.HttpResponse;
 
 public class ServicioConversion {
 
-    private final String apiKey = "93fc61ffc620f65229e37fe4";
+    private static final String API_KEY = "93fc61ffc620f65229e37fe4";
+    private static final HttpClient CLIENTE = HttpClient.newHttpClient();
 
     public String solicitarConversion(String base, String destino, double monto)
             throws IOException, InterruptedException {
 
-        String url = "https://v6.exchangerate-api.com/v6/" + apiKey +
+        String url = "https://v6.exchangerate-api.com/v6/" + API_KEY +
                 "/pair/" + base + "/" + destino + "/" + monto;
-
-        HttpClient cliente = HttpClient.newHttpClient();
 
         HttpRequest solicitud = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .GET()
                 .build();
 
-        HttpResponse<String> respuesta =
-                cliente.send(solicitud, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> respuesta = CLIENTE.send(
+                solicitud,
+                HttpResponse.BodyHandlers.ofString()
+        );
 
         return respuesta.body();
     }
