@@ -20,7 +20,14 @@ public class Conversor {
             System.out.println("6) Salir");
             System.out.print("Seleccione una opción: ");
 
-            int opcion = teclado.nextInt();
+            String entrada = teclado.nextLine();
+
+            if (!entrada.matches("\\d+")) {
+                System.out.println("Ingresa solo números. Inténtalo de nuevo.");
+                continue;
+            }
+
+            int opcion = Integer.parseInt(entrada);
 
             if (opcion == 6) {
                 System.out.println("Finalizando el programa...");
@@ -28,7 +35,14 @@ public class Conversor {
             }
 
             System.out.print("Ingrese el monto a convertir: ");
-            double monto = teclado.nextDouble();
+            String montoEntrada = teclado.nextLine();
+
+            if (!montoEntrada.matches("\\d+(\\.\\d+)?")) {
+                System.out.println("Ingresa un monto válido. Inténtalo de nuevo.");
+                continue;
+            }
+
+            double monto = Double.parseDouble(montoEntrada);
 
             String base = "";
             String destino = "";
@@ -40,7 +54,7 @@ public class Conversor {
                 case 4 -> { base = "ARS"; destino = "USD"; }
                 case 5 -> { base = "USD"; destino = "CLP"; }
                 default -> {
-                    System.out.println("Opción no válida. Intente nuevamente.");
+                    System.out.println("Opción no válida. Intenta de nuevo.");
                     continue;
                 }
             }
@@ -48,7 +62,7 @@ public class Conversor {
             String json = servicio.solicitarConversion(base, destino, monto);
             double resultado = parser.obtenerResultado(json);
 
-            System.out.printf("\n%.2f %s equivalen a %.2f %s\n",
+            System.out.printf("\n✅ Resultado: %.2f %s → %.2f %s\n",
                     monto, base, resultado, destino);
         }
     }
