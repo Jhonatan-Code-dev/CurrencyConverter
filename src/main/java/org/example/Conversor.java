@@ -62,7 +62,7 @@ public class Conversor {
             String json = servicio.solicitarConversion(base, destino, monto);
             double resultado = parser.obtenerResultado(json);
 
-            System.out.printf("\n✅ Resultado: %.2f %s → %.2f %s\n",
+            System.out.printf("\nResultado: %.2f %s → %.2f %s\n",
                     monto, base, resultado, destino);
         }
     }
