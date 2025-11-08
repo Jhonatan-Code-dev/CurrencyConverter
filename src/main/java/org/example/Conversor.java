@@ -43,9 +43,8 @@ public class Conversor {
             }
 
             double monto = Double.parseDouble(montoEntrada);
-
-            String base = "";
-            String destino = "";
+            String base;
+            String destino;
 
             switch (opcion) {
                 case 1 -> { base = "USD"; destino = "PEN"; }
